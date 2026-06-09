@@ -1,0 +1,13 @@
+# Ignorar o ambiente virtual
+venv/
+**/venv/
+
+# Arquivos ignorados
+*.csv
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+*.pdf
+*.docx
+*.png
