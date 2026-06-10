@@ -2,15 +2,19 @@
 import os
 import pandas as pd
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
 
 # Limpeza do terminal 
 os.system('cls')
 
+# Função de carregar as informações
+load_dotenv()
+
 # Variáveis de conexão
-host = 'localhost'
-user = 'root'
-password = ''
-database = 'bd_vendas'
+host = os.getenv('DB_HOST')
+user = os.getenv('DB_USER')
+password = os.getenv('DB_PASSWORD')
+database = os.getenv('DB_DATABASE')
 
 # Variável URL de conexão
 engine = create_engine(

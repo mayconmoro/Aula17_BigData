@@ -2,19 +2,25 @@
 # Criação do ambiente virtual
 # Importação das bibliotecas necessárias
 # Verificar arquivos de backup (requirement se houver) para agilizar
+# pip install python-dotenv
 
 # Bibliotecas
-from sqlalchemy import create_engine
-import pandas as pd
 import os
+import pandas as pd
+from sqlalchemy import create_engine
+from dotenv import load_dotenv
 
-os.system('cls') 
+# Limpeza do terminal 
+os.system('cls')
+
+# Função de carregar as informações
+load_dotenv()
 
 # Variáveis de conexão
-host = 'localhost' # ou 127.0.0.1
-user = 'root'
-password = ''
-database = 'bd_biblioteca'
+host = os.getenv('DB_HOST')
+user = os.getenv('DB_USER')
+password = os.getenv('DB_PASSWORD')
+database = os.getenv('DB_DATABASE')
 
 # Variável URL de conexão -> ordem dos argumentos tem que ser exatamento igual abaixo descrita.
 engine = create_engine(
