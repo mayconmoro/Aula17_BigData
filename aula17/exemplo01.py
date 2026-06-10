@@ -5,27 +5,32 @@
 # pip install python-dotenv
 
 # Bibliotecas
-import os
 import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
+import os
 
 # Limpeza do terminal 
 os.system('cls')
 
-# Função de carregar as informações
+# Criação de uma função de conexão com SQL
+def conecta_banco():
+    # Variáveis de conexão
+    host = os.getenv('DB_HOST')
+    user = os.getenv('DB_USER')
+    password = os.getenv('DB_PASSWORD')
+    database = os.getenv('DB_DATABASE')
+
+    # Variável URL de conexão -> ordem dos argumentos tem que ser exatamento igual abaixo descrita.
+    engine = create_engine(
+        f'mysql+pymysql://{user}:{password}@{host}/{database}'
+    )
+    return engine
+
+ # Função de carregar as informações
 load_dotenv()
 
-# Variáveis de conexão
-host = os.getenv('DB_HOST')
-user = os.getenv('DB_USER')
-password = os.getenv('DB_PASSWORD')
-database = os.getenv('DB_DATABASE')
-
-# Variável URL de conexão -> ordem dos argumentos tem que ser exatamento igual abaixo descrita.
-engine = create_engine(
-    f'mysql+pymysql://{user}:{password}@{host}/{database}'
-)
+engine = conecta_banco()
 
 # Otendo os dados do banco
 try:
